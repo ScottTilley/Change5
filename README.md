@@ -11,3 +11,6 @@ Based on ITU fillings (observations) frequency usage as follows:
 8471.23MHz - Orbiter-A (?),
 8478.69MHz - Lander (?),
 8486.27MHz - Orbiter-A (Orbiter)
+
+The raw IQ and Dynamic Spectra data sets for the lunar ascender launch on 2020-12-03 are posted here:
+https://zenodo.org/record/4305551#.X9AlosJ6p6J
