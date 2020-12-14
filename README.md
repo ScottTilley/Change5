@@ -1,6 +1,8 @@
 # Chang'e 5
 
-Doppler data for the various objects tracked during the Chang'e 5 mission.  Data was obtained from 49.4348N 123.668W 40m.  
+Doppler data for the various objects tracked during the Chang'e 5 mission.  
+
+Data was obtained from 49.4348N, 123.668W, 40m
 
 Data with _allen is obtained from 40.8178N, 121.4733W, 986m
 
