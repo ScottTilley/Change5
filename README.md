@@ -13,7 +13,7 @@ You are free to use this data for personal study.  Please contact me for any oth
 Based on ITU fillings (observations) frequency usage as follows:
 
 8463.74MHz - Orbiter-B (Ascent stage),
-8471.23MHz - Orbiter-A (?),
+8471.23MHz - Orbiter-A (Orbiter),
 8478.69MHz - Lander (?),
 8486.27MHz - Orbiter-A (Orbiter)
 
