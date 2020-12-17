@@ -19,3 +19,5 @@ Based on ITU fillings (observations) frequency usage as follows:
 
 The raw IQ and Dynamic Spectra data sets for the lunar ascender launch on 2020-12-03 are posted here:
 https://zenodo.org/record/4305551#.X9AlosJ6p6J
+
+20087A re-entry ephemeris v5.xlsm was contrbuted by Mike Loucks and Ted Molczan. 
