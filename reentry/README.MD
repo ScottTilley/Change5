@@ -1,3 +1,5 @@
+Chang'e 5 capsule re-entry as observed from China on 2020-12-16 UTC.
+
 This analysis of the data provided by Ted Molczan for the images and video provided by 
 
 @byspto at 39°20'46.64"N  99°34'10.99"E, This video started at 1:44:52 (UTC+8), shot with Canon EOS Ra + sigma 14mm f1.8 at 1/8s per frame (file recorded at 24fps so each consecutive 3 frames look the same)
