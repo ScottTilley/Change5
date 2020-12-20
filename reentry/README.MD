@@ -19,7 +19,6 @@ The following TLE is an exact fit to the pair of points you extracted from the v
 
 85 X 85 km
 1 47097U 20087A   20351.73954002  .00000000  00000-0  00000-0 0    08
-
 2 47097  43.5872  33.3960 0000100   0.0000  66.1702 16.71677480    02
 
 Of course the object was not orbital by that time, so this is only a rough approximation of the trajectory.
