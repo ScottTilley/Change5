@@ -15,7 +15,7 @@ byspto1.jpeg and byspto2.jpeg
 Image:
 mickeywzx1.jpeg, taken with Sony A7S3, with Voigtlnder 10 mm f/5.6
 
-A third observation was was referenced as well.  https://weibo.com/6369875217/JyWIcCUmL?ssl_rnd=1608500204.1288&type=comment
+A third observation was referenced as well.  https://weibo.com/6369875217/JyWIcCUmL?ssl_rnd=1608500204.1288&type=comment
 
 The following TLE is an exact fit to the pair of points you extracted from the video:
 
