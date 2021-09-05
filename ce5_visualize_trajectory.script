@@ -1,0 +1,205 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2020-07-23 17:40:38
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft CE5;
+GMAT CE5.DateFormat = UTCGregorian;
+GMAT CE5.Epoch = '03 Sep 2021 00:00:00.000';
+GMAT CE5.CoordinateSystem = EarthEq;
+
+GMAT CE5.DisplayStateType = Keplerian;
+GMAT CE5.SMA = 1205362.4032;
+GMAT CE5.ECC = 0.6493870;
+GMAT CE5.INC = 20.67664;
+GMAT CE5.TA = -90.72922579;
+GMAT CE5.RAAN = 343.92265;
+GMAT CE5.AOP = 244.61362 
+
+
+
+
+%GMAT CE5.SMA = 1111198.024;
+%GMAT CE5.ECC = 0.6460718;
+%GMAT CE5.INC = 20.93336;
+%GMAT CE5.RAAN = 343.28420;
+%GMAT CE5.TA = -116.45504;%-118.47178912;
+%GMAT CE5.AOP = 250.84849;
+
+%GMAT CE5.Epoch = '29 Aug 2021 00:00:00.000';
+%GMAT CE5.SMA = 1073628.015;
+%GMAT CE5.ECC = 0.6631693;
+%GMAT CE5.INC = 20.93989;
+%GMAT CE5.RAAN = 343.36091;
+%GMAT CE5.TA = 241.5282109;%-118.47178912;
+%GMAT CE5.AOP = 252.75360;
+
+GMAT CE5.DryMass = 850;
+GMAT CE5.Cd = 2.2;
+GMAT CE5.Cr = 1.8;
+GMAT CE5.DragArea = 15;
+GMAT CE5.SRPArea = 1;
+GMAT CE5.SPADDragScaleFactor = 1;
+GMAT CE5.SPADSRPScaleFactor = 1;
+GMAT CE5.NAIFId = -10013001;
+GMAT CE5.NAIFIdReferenceFrame = -9013001;
+GMAT CE5.OrbitColor = Red;
+GMAT CE5.TargetColor = Teal;
+GMAT CE5.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT CE5.CdSigma = 1e+70;
+GMAT CE5.CrSigma = 1e+70;
+GMAT CE5.Id = 'CE5Id';
+GMAT CE5.Attitude = CoordinateSystemFixed;
+GMAT CE5.SPADSRPInterpolationMethod = Bilinear;
+GMAT CE5.SPADSRPScaleFactorSigma = 1e+70;
+GMAT CE5.SPADDragInterpolationMethod = Bilinear;
+GMAT CE5.SPADDragScaleFactorSigma = 1e+70;
+GMAT CE5.ModelFile = 'aura.3ds';
+GMAT CE5.ModelOffsetX = 0;
+GMAT CE5.ModelOffsetY = 0;
+GMAT CE5.ModelOffsetZ = 0;
+GMAT CE5.ModelRotationX = 0;
+GMAT CE5.ModelRotationY = 0;
+GMAT CE5.ModelRotationZ = 0;
+GMAT CE5.ModelScale = 1;
+GMAT CE5.AttitudeDisplayStateType = 'Quaternion';
+GMAT CE5.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT CE5.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT CE5.EulerAngleSequence = '321';
+
+
+
+
+
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel DefaultProp_ForceModel;
+GMAT DefaultProp_ForceModel.CentralBody = Sun;
+GMAT DefaultProp_ForceModel.PointMasses = {Earth, Jupiter, Mars, Sun, Luna};
+GMAT DefaultProp_ForceModel.Drag = None;
+GMAT DefaultProp_ForceModel.SRP = Off;
+GMAT DefaultProp_ForceModel.RelativisticCorrection = Off;
+GMAT DefaultProp_ForceModel.ErrorControl = RSSStep;
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator DefaultProp;
+GMAT DefaultProp.FM = DefaultProp_ForceModel;
+GMAT DefaultProp.Type = PrinceDormand45;
+GMAT DefaultProp.InitialStepSize = 60;
+GMAT DefaultProp.Accuracy = 9.999999999999999e-12;
+GMAT DefaultProp.MinStep = 10;
+GMAT DefaultProp.MaxStep = 3600;
+GMAT DefaultProp.MaxStepAttempts = 50;
+GMAT DefaultProp.StopIfAccuracyIsViolated = true;
+
+
+%----------------------------------------
+%---------- Coordinate Systems
+%----------------------------------------
+
+%Create CoordinateSystem SunICRF;
+%GMAT SunICRF.Origin = Sun;
+%GMAT SunICRF.Axes = ICRF;
+
+Create CoordinateSystem EarthEq;
+GMAT EarthEq.Origin = Earth;
+GMAT EarthEq.Axes = MJ2000Eq;
+
+Create CoordinateSystem LunaFixed;
+GMAT LunaFixed.Origin = Luna;
+GMAT LunaFixed.Axes = BodyFixed;
+
+%Create CoordinateSystem MarsInertial;
+%GMAT MarsInertial.Origin = Mars;
+%GMAT MarsInertial.Axes = BodyInertial;
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+
+Create OrbitView EarthView;
+GMAT EarthView.SolverIterations = Current;
+GMAT EarthView.UpperLeft = [ 0.1446428571428572 0.04399524375743163 ];
+GMAT EarthView.Size = [ 0.9964285714285714 0.9524375743162902 ];
+GMAT EarthView.RelativeZOrder = 293;
+GMAT EarthView.Maximized = true;
+GMAT EarthView.Add = {CE5, Earth, Sun, Luna};
+GMAT EarthView.CoordinateSystem = EarthMJ2000Eq;
+GMAT EarthView.DrawObject = [ true true ];
+GMAT EarthView.DataCollectFrequency = 1;
+GMAT EarthView.UpdatePlotFrequency = 50;
+GMAT EarthView.NumPointsToRedraw = 0;
+GMAT EarthView.ShowPlot = true;
+GMAT EarthView.MaxPlotPoints = 20000;
+GMAT EarthView.ShowLabels = true;
+GMAT EarthView.ViewPointReference = Earth;
+GMAT EarthView.ViewPointVector = [ 0 0 1500000 ];
+GMAT EarthView.ViewDirection = Earth;
+GMAT EarthView.ViewScaleFactor = 1;
+GMAT EarthView.ViewUpCoordinateSystem = EarthMJ2000Eq;
+GMAT EarthView.ViewUpAxis = Z;
+GMAT EarthView.EclipticPlane = Off;
+GMAT EarthView.XYPlane = Off;
+GMAT EarthView.WireFrame = Off;
+GMAT EarthView.Axes = Off;
+GMAT EarthView.Grid = Off;
+GMAT EarthView.SunLine = Off;
+GMAT EarthView.UseInitialView = On;
+GMAT EarthView.StarCount = 7000;
+GMAT EarthView.EnableStars = Off;
+GMAT EarthView.EnableConstellations = Off;
+
+Create ReportFile ReportFile1;
+GMAT ReportFile1.SolverIterations = Current;
+GMAT ReportFile1.UpperLeft = [ 0 0 ];
+GMAT ReportFile1.Size = [ 0 0 ];
+GMAT ReportFile1.RelativeZOrder = 0;
+GMAT ReportFile1.Maximized = false;
+GMAT ReportFile1.Filename = 'ReportFileCE5_1.txt';
+GMAT ReportFile1.Precision = 16;
+GMAT ReportFile1.Add = {CE5.UTCGregorian, CE5.EarthMJ2000Eq.RA, CE5.EarthMJ2000Eq.DEC, CE5.Luna.Altitude};
+GMAT ReportFile1.WriteHeaders = true;
+GMAT ReportFile1.LeftJustify = On;
+GMAT ReportFile1.ZeroFill = Off;
+GMAT ReportFile1.FixedWidth = true;
+GMAT ReportFile1.Delimiter = ' ';
+GMAT ReportFile1.ColumnWidth = 23;
+GMAT ReportFile1.WriteReport = true;
+
+Create GroundTrackPlot GroundTrackPlot1;
+GMAT GroundTrackPlot1.SolverIterations = Current;
+GMAT GroundTrackPlot1.UpperLeft = [ 0.1446428571428572 0.04399524375743163 ];
+GMAT GroundTrackPlot1.Size = [ 0.9964285714285714 0.9524375743162902 ];
+GMAT GroundTrackPlot1.RelativeZOrder = 289;
+GMAT GroundTrackPlot1.Maximized = true;
+GMAT GroundTrackPlot1.Add = {CE5};
+GMAT GroundTrackPlot1.DataCollectFrequency = 1;
+GMAT GroundTrackPlot1.UpdatePlotFrequency = 50;
+GMAT GroundTrackPlot1.NumPointsToRedraw = 0;
+GMAT GroundTrackPlot1.ShowPlot = true;
+GMAT GroundTrackPlot1.MaxPlotPoints = 20000;
+GMAT GroundTrackPlot1.CentralBody = Earth;
+GMAT GroundTrackPlot1.TextureMap = 'ModifiedBlueMarble.jpg';
+
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+GMAT CE5.OrbitColor = Red;
+%Propagate DefaultProp(CE5) {CE5.ElapsedSecs = 0};
+%Propagate DefaultProp(CE5) {CE5.ElapsedSecs = 172800};
+Propagate DefaultProp(CE5) {CE5.Luna.Periapsis};
+PenUp EarthView;
+PenDown EarthView;

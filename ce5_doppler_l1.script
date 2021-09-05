@@ -1,0 +1,245 @@
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft CE5;
+
+
+GMAT CE5.DateFormat = UTCGregorian;
+
+GMAT CE5.Epoch = '03 Sep 2021 00:00:00.000';
+GMAT CE5.CoordinateSystem = EarthEq;
+%GMAT CE5.CoordinateSystem = SunMJ2000Eq;
+GMAT CE5.DisplayStateType = Keplerian;
+GMAT CE5.SMA = 1205362.4032;
+GMAT CE5.ECC = 0.6493870;
+GMAT CE5.INC = 20.67664;
+GMAT CE5.TA = -90.72922579;
+GMAT CE5.RAAN = 343.92265;
+GMAT CE5.AOP = 244.61362 
+
+
+
+
+
+
+
+
+%GMAT CE5.SMA = 1111198.023999999;
+%GMAT CE5.ECC = 0.6460718;
+%GMAT CE5.INC = 20.93336;
+%GMAT CE5.RAAN = 343.2842;
+%GMAT CE5.AOP = 250.84849;
+%GMAT CE5.TA = 243.54496;%-118.47178912;
+
+GMAT CE5.DryMass = 850;
+GMAT CE5.Cd = 2.2;
+GMAT CE5.Cr = 1.8;
+GMAT CE5.DragArea = 15;
+GMAT CE5.SRPArea = 1;
+GMAT CE5.SPADDragScaleFactor = 1;
+GMAT CE5.SPADSRPScaleFactor = 1;
+GMAT CE5.NAIFId = -10014001;
+GMAT CE5.NAIFIdReferenceFrame = -9014001;
+GMAT CE5.OrbitColor = Red;
+GMAT CE5.TargetColor = Teal;
+GMAT CE5.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT CE5.CdSigma = 1e+70;
+GMAT CE5.CrSigma = 1e+70;
+GMAT CE5.Id = '91';
+GMAT CE5.Attitude = CoordinateSystemFixed;
+GMAT CE5.SPADSRPInterpolationMethod = Bilinear;
+GMAT CE5.SPADSRPScaleFactorSigma = 1e+70;
+GMAT CE5.SPADDragInterpolationMethod = Bilinear;
+GMAT CE5.SPADDragScaleFactorSigma = 1e+70;
+GMAT CE5.AddHardware = {HGA, XBandTX};
+GMAT CE5.ModelFile = 'aura.3ds';
+GMAT CE5.ModelOffsetX = 0;
+GMAT CE5.ModelOffsetY = 0;
+GMAT CE5.ModelOffsetZ = 0;
+GMAT CE5.ModelRotationX = 0;
+GMAT CE5.ModelRotationY = 0;
+GMAT CE5.ModelRotationZ = 0;
+GMAT CE5.ModelScale = 1;
+GMAT CE5.AttitudeDisplayStateType = 'Quaternion';
+GMAT CE5.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT CE5.AttitudeCoordinateSystem = MoonInertial;
+GMAT CE5.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Hardware Components
+%----------------------------------------
+
+Create Antenna HGA;
+GMAT HGA.DirectionX = 1;
+GMAT HGA.DirectionY = 0;
+GMAT HGA.DirectionZ = 0;
+GMAT HGA.SecondDirectionX = 0;
+GMAT HGA.SecondDirectionY = 1;
+GMAT HGA.SecondDirectionZ = 0;
+GMAT HGA.HWOriginInBCSX = 0;
+GMAT HGA.HWOriginInBCSY = 0;
+GMAT HGA.HWOriginInBCSZ = 0;
+
+Create Transmitter XBandTX;
+GMAT XBandTX.PrimaryAntenna = HGA;
+GMAT XBandTX.Frequency = 8400; % X-band in GMAT only goes up to 8.4GHz
+
+Create Antenna Dish;
+GMAT Dish.DirectionX = 1;
+GMAT Dish.DirectionY = 0;
+GMAT Dish.DirectionZ = 0;
+GMAT Dish.SecondDirectionX = 0;
+GMAT Dish.SecondDirectionY = 1;
+GMAT Dish.SecondDirectionZ = 0;
+GMAT Dish.HWOriginInBCSX = 0;
+GMAT Dish.HWOriginInBCSY = 0;
+GMAT Dish.HWOriginInBCSZ = 0;
+
+Create Receiver VE7TILRX;
+GMAT VE7TILRX.PrimaryAntenna = Dish;
+GMAT VE7TILRX.Id = '1';
+
+
+%----------------------------------------
+%---------- GroundStations
+%----------------------------------------
+
+Create GroundStation VE7TIL;
+GMAT VE7TIL.OrbitColor = Thistle;
+GMAT VE7TIL.TargetColor = DarkGray;
+GMAT VE7TIL.CentralBody = Earth;
+GMAT VE7TIL.StateType = Spherical;
+GMAT VE7TIL.HorizonReference = Ellipsoid;
+GMAT VE7TIL.Location1 = 49.4348;
+GMAT VE7TIL.Location2 = 236.332;
+GMAT VE7TIL.Location3 = 0.04;
+%GMAT VE7TIL.Location1 = 54.35333;
+%GMAT VE7TIL.Location2 = 10.279056;
+%GMAT VE7TIL.Location3 = 0.06;
+
+
+GMAT VE7TIL.Id = '1';
+GMAT VE7TIL.AddHardware = {Dish, VE7TILRX};
+GMAT VE7TIL.IonosphereModel = 'None';
+GMAT VE7TIL.TroposphereModel = 'None';
+GMAT VE7TIL.DataSource = 'Constant';
+GMAT VE7TIL.Temperature = 295.1;
+GMAT VE7TIL.Pressure = 1013.5;
+GMAT VE7TIL.Humidity = 55;
+GMAT VE7TIL.MinimumElevationAngle = 0;
+GMAT VE7TIL.ErrorModels = {VE7TILAzimuth, VE7TILElevation, VE7TILRangeRate};
+
+
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel ForceModel;
+GMAT ForceModel.CentralBody = Earth;
+GMAT ForceModel.PointMasses = {Earth, Luna, Mercury, Venus, Jupiter, Mars, Sun, Saturn, Neptune, Uranus, Pluto};
+GMAT ForceModel.Drag = None;
+GMAT ForceModel.SRP = Off;
+GMAT ForceModel.RelativisticCorrection = On;
+GMAT ForceModel.ErrorControl = None;
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator Prop;
+GMAT Prop.FM = ForceModel;
+GMAT Prop.Type = PrinceDormand45;
+GMAT Prop.InitialStepSize = 60;
+GMAT Prop.Accuracy = 9.999999999999999e-12;
+GMAT Prop.MinStep = 0;
+GMAT Prop.MaxStep = 60;
+GMAT Prop.MaxStepAttempts = 50;
+GMAT Prop.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- Coordinate Systems
+%----------------------------------------
+
+Create CoordinateSystem MoonInertial;
+GMAT MoonInertial.Origin = Luna;
+GMAT MoonInertial.Axes = BodyInertial;
+
+Create CoordinateSystem LunaFixed;
+GMAT LunaFixed.Origin = Luna;
+GMAT LunaFixed.Axes = BodyFixed;
+
+Create CoordinateSystem EarthEq;
+GMAT EarthEq.Origin = Earth;
+GMAT EarthEq.Axes = MJ2000Eq;
+
+%----------------------------------------
+%---------- ErrorModels
+%----------------------------------------
+
+Create ErrorModel VE7TILAzimuth;
+GMAT VE7TILAzimuth.Type = 'Azimuth';
+GMAT VE7TILAzimuth.NoiseSigma = 1e-10;
+GMAT VE7TILAzimuth.Bias = 0;
+GMAT VE7TILAzimuth.BiasSigma = 1e+70;
+
+Create ErrorModel VE7TILElevation;
+GMAT VE7TILElevation.Type = 'Elevation';
+GMAT VE7TILElevation.NoiseSigma = 1e-10;
+GMAT VE7TILElevation.Bias = 0;
+GMAT VE7TILElevation.BiasSigma = 1e+70;
+
+Create ErrorModel VE7TILRangeRate;
+GMAT VE7TILRangeRate.Type = 'RangeRate';
+GMAT VE7TILRangeRate.NoiseSigma = 1e-10;
+GMAT VE7TILRangeRate.Bias = 0;
+GMAT VE7TILRangeRate.BiasSigma = 1e+70;
+
+%----------------------------------------
+%---------- MeasurementModels
+%----------------------------------------
+
+Create TrackingFileSet VE7TILData;
+%VE7TILData.AddTrackingConfig = {{CE5, VE7TIL}, 'Azimuth'};
+%VE7TILData.AddTrackingConfig = {{CE5, VE7TIL}, 'Elevation'};
+GMAT VE7TILData.AddTrackingConfig = {'{{CE5,VE7TIL},RangeRate}'};
+%GMAT VE7TILData.AddTrackingConfig = {'{{CE5,VE7TIL},RangeRate}'};
+GMAT VE7TILData.FileName = {'ce5_Doppler_l1.gmd'};
+GMAT VE7TILData.UseLightTime = true;
+GMAT VE7TILData.UseRelativityCorrection = true;
+GMAT VE7TILData.UseETminusTAI = true;
+GMAT VE7TILData.AberrationCorrection = 'None';
+GMAT VE7TILData.SimRangeModuloConstant = 1e+18;
+GMAT VE7TILData.SimDopplerCountInterval = 1;
+GMAT VE7TILData.SimTDRSNode4Frequency = 2000;
+GMAT VE7TILData.SimTDRSNode4FrequencyBand = 1;
+GMAT VE7TILData.SimTDRSSmarId = 0;
+GMAT VE7TILData.SimTDRSDataFlag = 0;
+
+%----------------------------------------
+%---------- Solvers
+%----------------------------------------
+
+Create Simulator Sim;
+GMAT Sim.AddData = {VE7TILData};
+GMAT Sim.Propagator = Prop
+GMAT Sim.EpochFormat = UTCGregorian;
+GMAT Sim.InitialEpoch = '28 Aug 2021 00:00:00'; %  2020-10-13 03:36:52.877
+GMAT Sim.FinalEpoch = '6 Sep 2021 00:00:00'; % Closest approach
+GMAT Sim.MeasurementTimeStep = 60;
+GMAT Sim.AddNoise = Off;
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+RunSimulator Sim;
+%Propagate Prop(CE5) {CE5.ElapsedDays = 10};
+
+
