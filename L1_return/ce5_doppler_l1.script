@@ -6,21 +6,31 @@
 %---------- Spacecraft
 %----------------------------------------
 
+
+
+
+
+
 Create Spacecraft CE5;
-
-
 GMAT CE5.DateFormat = UTCGregorian;
-
-GMAT CE5.Epoch = '03 Sep 2021 00:00:00.000';
+GMAT CE5.Epoch = '12 Sep 2021 00:00:00.000';
 GMAT CE5.CoordinateSystem = EarthEq;
-%GMAT CE5.CoordinateSystem = SunMJ2000Eq;
-GMAT CE5.DisplayStateType = Keplerian;
-GMAT CE5.SMA = 1205362.4032;
-GMAT CE5.ECC = 0.6493870;
-GMAT CE5.INC = 20.67664;
-GMAT CE5.TA = -90.72922579;
-GMAT CE5.RAAN = 343.92265;
-GMAT CE5.AOP = 244.61362 
+%GMAT CE5.DisplayStateType = Keplerian;
+%GMAT CE5.SMA = 1205362.4032;
+%GMAT CE5.ECC = 0.6493870;
+%GMAT CE5.INC = 20.67664;
+%GMAT CE5.TA = -90.72922579;
+%GMAT CE5.RAAN = 343.92265;
+%GMAT CE5.AOP = 244.61362 
+
+GMAT CE5.DisplayStateType = Cartesian;
+GMAT CE5.X = -213525.1909829 ;
+GMAT CE5.Y = -298623.9720921;
+GMAT CE5.Z = -111260.2577864;
+GMAT CE5.VX = 1.5600565772812;
+GMAT CE5.VY = -0.5515701075090;
+GMAT CE5.VZ = -0.0846236827060 ;
+
 
 
 
@@ -189,7 +199,7 @@ GMAT VE7TILAzimuth.Bias = 0;
 GMAT VE7TILAzimuth.BiasSigma = 1e+70;
 
 Create ErrorModel VE7TILElevation;
-GMAT VE7TILElevation.Type = 'Elevation';
+GMAT VE7TILElevation.Type = 'Range';
 GMAT VE7TILElevation.NoiseSigma = 1e-10;
 GMAT VE7TILElevation.Bias = 0;
 GMAT VE7TILElevation.BiasSigma = 1e+70;
@@ -208,7 +218,7 @@ Create TrackingFileSet VE7TILData;
 %VE7TILData.AddTrackingConfig = {{CE5, VE7TIL}, 'Azimuth'};
 %VE7TILData.AddTrackingConfig = {{CE5, VE7TIL}, 'Elevation'};
 GMAT VE7TILData.AddTrackingConfig = {'{{CE5,VE7TIL},RangeRate}'};
-%GMAT VE7TILData.AddTrackingConfig = {'{{CE5,VE7TIL},RangeRate}'};
+%GMAT VE7TILData.AddTrackingConfig = {'{{CE5,VE7TIL},Range}'};
 GMAT VE7TILData.FileName = {'ce5_Doppler_l1.gmd'};
 GMAT VE7TILData.UseLightTime = true;
 GMAT VE7TILData.UseRelativityCorrection = true;
@@ -221,6 +231,38 @@ GMAT VE7TILData.SimTDRSNode4FrequencyBand = 1;
 GMAT VE7TILData.SimTDRSSmarId = 0;
 GMAT VE7TILData.SimTDRSDataFlag = 0;
 
+Create OrbitView EarthView;
+GMAT EarthView.SolverIterations = Current;
+GMAT EarthView.UpperLeft = [ 0.1446428571428572 0.04399524375743163 ];
+GMAT EarthView.Size = [ 0.9964285714285714 0.9524375743162902 ];
+GMAT EarthView.RelativeZOrder = 293;
+GMAT EarthView.Maximized = true;
+GMAT EarthView.Add = {CE5, Earth, Sun, Luna};
+GMAT EarthView.CoordinateSystem = EarthMJ2000Eq;
+GMAT EarthView.DrawObject = [ true true ];
+GMAT EarthView.DataCollectFrequency = 1;
+GMAT EarthView.UpdatePlotFrequency = 50;
+GMAT EarthView.NumPointsToRedraw = 0;
+GMAT EarthView.ShowPlot = true;
+GMAT EarthView.MaxPlotPoints = 20000;
+GMAT EarthView.ShowLabels = true;
+GMAT EarthView.ViewPointReference = Earth;
+GMAT EarthView.ViewPointVector = [ 0 0 1500000 ];
+GMAT EarthView.ViewDirection = Earth;
+GMAT EarthView.ViewScaleFactor = 1;
+GMAT EarthView.ViewUpCoordinateSystem = EarthMJ2000Eq;
+GMAT EarthView.ViewUpAxis = Z;
+GMAT EarthView.EclipticPlane = Off;
+GMAT EarthView.XYPlane = Off;
+GMAT EarthView.WireFrame = Off;
+GMAT EarthView.Axes = Off;
+GMAT EarthView.Grid = Off;
+GMAT EarthView.SunLine = Off;
+GMAT EarthView.UseInitialView = On;
+GMAT EarthView.StarCount = 7000;
+GMAT EarthView.EnableStars = On;
+GMAT EarthView.EnableConstellations = On;
+
 %----------------------------------------
 %---------- Solvers
 %----------------------------------------
@@ -230,7 +272,7 @@ GMAT Sim.AddData = {VE7TILData};
 GMAT Sim.Propagator = Prop
 GMAT Sim.EpochFormat = UTCGregorian;
 GMAT Sim.InitialEpoch = '28 Aug 2021 00:00:00'; %  2020-10-13 03:36:52.877
-GMAT Sim.FinalEpoch = '6 Sep 2021 00:00:00'; % Closest approach
+GMAT Sim.FinalEpoch = '12 Sep 2021 12:00:00'; % Closest approach
 GMAT Sim.MeasurementTimeStep = 60;
 GMAT Sim.AddNoise = Off;
 
