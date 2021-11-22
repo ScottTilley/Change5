@@ -1,0 +1,27 @@
+Orbital elements:  Change5
+   Perihelion 2021 Dec 2.56309 TT = 13:30:51 (JD 2459551.06309)
+Epoch 2021 Nov 20.0 TT = JDT 2459538.5   Earth MOID: 0.0020   Find_Orb
+M 349.20106620                      (J2000 ecliptic)
+n   0.85957617     Peri.   15.20548
+a   1.09550190     Node    55.60145
+e   0.0978808      Incl.    0.11226
+P   1.15/418.80d    q 0.98827321  Q 1.20273059
+25 of 58 observations 2021 Oct. 7-Nov. 2; mean residual 87".63
+# State vector (heliocentric equatorial J2000):
+#   +0.530470477254  +0.767534188862  +0.332841385335 AU
+#  -15.473613663573  +8.587280264891  +3.761620266281 mAU/day
+# MOIDs: Me  0.679577 Ve  0.267348 Ea  0.002005 Ma  0.246203
+# MOIDs: Ju  3.900321 Sa  8.027098 Ur 17.166148 Ne 28.808291
+# Elements written: 22 Nov 2021  4:15:29 (JD 2459540.677420)
+# Full range of obs: 2021 Oct. 7-Nov. 21 (58 observations)
+# Find_Orb ver: 2021 Sep 15
+# Perturbers: 000007fe (Merc-Pluto plus Luna);  JPL DE-430
+# Tisserand relative to Earth: 2.99609
+# Earth encounter velocity 1.8754 km/s
+# Barbee-style encounter velocity: 1.1995 km/s
+# Score: 79.693445
+#  $Name=Change5  $Ty=2021  $Tm=12  $Td=02.563091  $MA=349.20107
+#  $ecc=0.0978809  $Eqnx=2000.
+#  $a=1.0955019  $Peri=15.20549  $Node=55.60145  $Incl=0.11227
+#  $EpJD=2459538.500  $q=0.988273  $T=2459551.063091  $H=0.0
+# Sigmas avail: 1
