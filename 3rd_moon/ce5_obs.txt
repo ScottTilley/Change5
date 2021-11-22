@@ -86,3 +86,4 @@ COM Long. 121.115227 0 0 W, Lat. 38.800939 0 0 N, Alt. 20m, unknown
     Change5   CK211120:221320   05 57 20    +25 45 58                        PMa	
     Change5   CK211121:140000   06.585      +25.8                            ATA
     Change5   CK211121:2100     06.91       +26.81                           EKa
+    Change5   CK211122:1021     07 26       +25 08                           ScT
